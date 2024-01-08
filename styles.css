@@ -8,16 +8,18 @@ body {
 main {
     background-image: url('assets/logo_tile.png');
     background-repeat: repeat;
+    background-position: left bottom;
 }
 
-main::before {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+#main_section {
+    padding-top: 22px;
+    background-color: rgba(75, 75, 75, 0.5);
+    backdrop-filter: blur(10px);
 }
 
 /* HEADER STYLING */
 header {
     background-color: #333;
-    color: #fff;
     padding: 10px 0;
     text-align: center;
     font-size: large; 
@@ -31,6 +33,12 @@ nav {
     margin: 0 15px 0 15px;
 }
 
+#title {
+    font-size: x-large; 
+    color: white; 
+    padding: 0 30px 0 10px;
+}
+
 nav > a, 
 nav > div > a {
     color: white;
@@ -38,6 +46,7 @@ nav > div > a {
     border: 2px solid white;
     border-radius: 5px;
     padding: 7px;
+    transition: color 0.4s, background-color 0.4s;
 }
 
 nav > a:hover, 
@@ -57,6 +66,7 @@ nav > div {
     width: auto;
     margin-left: 10px;
 }
+
 
 /* TOOGLE SECTIONS */
 #about_us_section { display: none; }
@@ -108,7 +118,6 @@ nav > div {
 .likesContainer {
     display: flex;
     flex-direction: row;
-    /*align-items: flex-end; /* Align items to the right */
     align-items: center;
     justify-content: space-between;
 }
@@ -190,4 +199,9 @@ nav > div {
   color: #333;
 }
 
-
+@media screen and (max-width: 600px) {
+    header { font-size: small; }
+    #title { font-size: medium; padding: 0 15px 0 10px; }
+    .post { font-size: small; }
+    .likesDislikesBtn { font-size: 1.25rem; }
+}

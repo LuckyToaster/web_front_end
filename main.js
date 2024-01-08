@@ -3,9 +3,8 @@ submitBtn.addEventListener('click', post);
 document.addEventListener('DOMContentLoaded', fetchThread);
 document.addEventListener('click', (event) => {
     const btn = event.target
-    const id = btn.closest('.post').id
-    if (btn.classList.contains('likeBtn')) likePost(true, id)
-    if (btn.classList.contains('dislikeBtn')) likePost(false, id)
+    if (btn.classList.contains('likeBtn')) likePost(true, btn.closest('.post').id)
+    if (btn.classList.contains('dislikeBtn')) likePost(false, btn.closest('.post').id)
 })
 
 
