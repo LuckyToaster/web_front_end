@@ -1,3 +1,5 @@
+html:focus-within { scroll-behavior: smooth !important;}
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -141,13 +143,14 @@ nav > div {
 }
 
 #msgInput,
-#submitBtn,
+#submitBtn > i,
 #customFileInput > i {
-  font-size: large;
+  font-size: x-large;
 }
 
-#submitBtn {height: 100%;}
-#customFileInput { height: 36px;}
+/* I HAVE TWEAKED THESE TWO BC I HAVE NO CLUE HOW TO MAKE ALL OF THEM THE EXACT SAME HEIGHT */
+#customFileInput { height: 44px; } 
+#submitBtn { height: 48px;}
 
 #msgInput,
 #submitBtn,
@@ -162,6 +165,7 @@ nav > div {
 #msgInput {
   border-top-right-radius: 0; /* Adjust border radius */
   border-bottom-right-radius: 0; /* Adjust border radius */
+  border: 2px solid white;
   background-color: #333;
   color: white;
 }
@@ -171,32 +175,42 @@ nav > div {
 }
 
 #customFileInput {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
-  margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    /*margin: 0 5px;*/
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    transition: color 0.4s, background-color 0.4s; 
 }
 
 #submitBtn {
-  border-top-right-radius: 20px; /* Rounded on the right */
-  border-bottom-right-radius: 20px; /* Rounded on the right */
-  border-top-left-radius: 0; /* Flat on the left */
-  border-bottom-left-radius: 0; /* Flat on the left */
-  border: none;
-  outline: none;
-  padding: 8px 16px;
-  font-size: large;
-  background-color: #333;
-  color: white;
-  cursor: pointer;
+    border-top-right-radius: 20px; /* Rounded on the right */
+    border-bottom-right-radius: 20px; /* Rounded on the right */
+    border-top-left-radius: 0; /* Flat on the left */
+    border-bottom-left-radius: 0; /* Flat on the left */
+    border: 2px solid white;
+    outline: none;
+    padding: 8px 16px;
+    font-size: large;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: color 0.4s, background-color 0.4s;
+}
+
+#submitBtn:hover{ 
+    color: #333;
+    background-color: white;
 }
 
 #customFileInput:hover, #submitBtn:hover {
-  background-color: white;
-  color: #333;
+    background-color: white;
+    color: #333;
+    transition: color 0.4s, background-color 0.4s; 
 }
 
 @media screen and (max-width: 600px) {
@@ -204,4 +218,13 @@ nav > div {
     #title { font-size: medium; padding: 0 15px 0 10px; }
     .post { font-size: small; }
     .likesDislikesBtn { font-size: 1.25rem; }
+
+    #msgInput,
+    #submitBtn > i,
+    #customFileInput > i {
+        font-size: large;
+    }
+    /* I HAVE TWEAKED THESE TWO BC I HAVE NO CLUE HOW TO MAKE ALL OF THEM THE EXACT SAME HEIGHT */
+    #customFileInput { height: 37px; } 
+    #submitBtn { height: 41px; }
 }
