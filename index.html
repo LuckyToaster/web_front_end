@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Call Sol</title>
+    <link rel="icon" type="image/png" href="assets/logo_small.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="#about_us_section">About Us 🤔</a>
+            <div>
+                <a href="#main_section">Better Call Sol</a>
+                <img id='logo' src="assets/logo.png" />
+            </div>
+            <a href="linktopaypal">Donate <i class="fas fa-hand-holding-medical"></i></a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about_us_section">
+            <h1 class="centered">Goal section</h1>
+        </section>
+
+        <section id="main_section">
+            <div id="threadContainer"></div>
+            <form id='form_container'>
+                <input id="msgInput" type="text" placeholder="Message"/>
+                <label for="fileInput" id="customFileInput">
+                    <i class="fas fa-image"></i>
+                </label>
+                <input id='fileInput' type="file"/>
+                <button id='submitBtn'><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

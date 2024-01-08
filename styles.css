@@ -1,0 +1,193 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    min-width: 450px;
+    min-height: 500px;
+}
+
+main {
+    background-image: url('assets/logo_tile.png');
+    background-repeat: repeat;
+}
+
+main::before {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+/* HEADER STYLING */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: large; 
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15px 0 15px;
+}
+
+nav > a, 
+nav > div > a {
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+nav > a:hover, 
+nav > div > a:hover {
+    background-color: white;
+    color: #333;
+    transition: color 0.4s, background-color 0.4s;
+}
+
+nav > div {
+    display: flex; 
+    align-items: center; 
+}
+
+#logo {
+    height: 55px;
+    width: auto;
+    margin-left: 10px;
+}
+
+/* TOOGLE SECTIONS */
+#about_us_section { display: none; }
+#about_us_section:target { display: block; }
+#about_us_section:target ~ #main_section { display: none; }
+
+/* GENERAL PURPUSE CLASSES */
+.centered {
+    text-align: center;
+}
+
+/* POST STYLING */
+#threadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    padding: 1rem;
+    border: 2px solid white;
+    border-radius: 7px;
+    margin: 0.5rem 0;
+    background-color: #333;
+    color: white;
+    font-size: large;
+}
+
+.postContents {
+    display: flex;
+    align-items: center;
+}
+
+.postContents > p { margin: 0; }
+.postContents > img, .postContents > video {
+    max-width: 40%;
+    max-height: 40%;
+    margin-right: 1rem;
+}
+
+.postLikesDislikesContainer { margin-left: 1rem; }
+.likesContainer > button { transition: transform 0.3s ease; }
+.likesContainer > button:hover { transform: scale(1.25); }
+
+.likesContainer {
+    display: flex;
+    flex-direction: row;
+    /*align-items: flex-end; /* Align items to the right */
+    align-items: center;
+    justify-content: space-between;
+}
+
+.likesDislikesBtn {
+    cursor: pointer;
+    border: none;
+    margin: none;
+    background: none;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+/* FORM STYLING */
+#form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#msgInput,
+#submitBtn,
+#customFileInput > i {
+  font-size: large;
+}
+
+#submitBtn {height: 100%;}
+#customFileInput { height: 36px;}
+
+#msgInput,
+#submitBtn,
+#customFileInput > i,
+#fileInput {
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  border-radius: 20px; /* Pill-shaped border */
+}
+
+#msgInput {
+  border-top-right-radius: 0; /* Adjust border radius */
+  border-bottom-right-radius: 0; /* Adjust border radius */
+  background-color: #333;
+  color: white;
+}
+
+#fileInput {
+  display: none; /* Hide the default file input */
+}
+
+#customFileInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+#submitBtn {
+  border-top-right-radius: 20px; /* Rounded on the right */
+  border-bottom-right-radius: 20px; /* Rounded on the right */
+  border-top-left-radius: 0; /* Flat on the left */
+  border-bottom-left-radius: 0; /* Flat on the left */
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  font-size: large;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+#customFileInput:hover, #submitBtn:hover {
+  background-color: white;
+  color: #333;
+}
+
+
