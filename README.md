@@ -1,6 +1,6 @@
 # Install Guide
 1. Open windows powershell in Administrator mode
-2. Type copy paste the following command to install git (if not installed)
+2. Copy paste the following command to install git (if not installed)
 ```bash
 winget install Git.Git
 ```
