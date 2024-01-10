@@ -7,6 +7,8 @@ document.addEventListener('click', (event) => {
     if (btn.classList.contains('dislikeBtn')) likePost(false, btn.closest('.post').id)
 })
 
+const ip = '49.13.153.69'
+let URL = `http://${ip}:3000/api/`
 
 function post() {
     const msgInput = document.getElementById('msgInput')
@@ -17,20 +19,20 @@ function post() {
     if (fileInput.files[0] != null) 
         fd.append('file', fileInput.files[0])
 
-    fetch('http://localhost:3000/api/insert', {method: 'POST', body: fd})
+    fetch(`${URL}insert`, {method: 'POST', body: fd})
         .then(res => res.ok ? console.log('POST OK') : console.log('POST ERROR'))
         .catch(e => console.error(e))
 }
 
 
 function likePost(like, id) {
-    const url = like ? `http://localhost:3000/api/like/${id}` : `http://localhost:3000/api/dislike/${id}`
+    const url = like ? `${URL}like/${id}` : `${URL}dislike/${id}`
     fetch(url, { method: 'POST' })
 }
 
 
 function fetchThread() {
-    fetch('http://localhost:3000/api/thread')
+    fetch(`${URL}thread`)
         .then(res => res.json())
         .then(json => {
             json.sort((a,b) => a.id - b.id)
@@ -42,8 +44,7 @@ function fetchThread() {
 
 function getUrl(post) {
     if (!post.media) return null
-    const url = "http://localhost:3000/api/media/"
-    return `${url}${post.id}.${post.mediaMimeType}`
+    return `${URL}media/${post.id}.${post.mediaMimeType}`
 }
 
 
