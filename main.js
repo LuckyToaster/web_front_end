@@ -1,5 +1,6 @@
 const ip = '49.13.153.69'
 let URL = `http://${ip}:3000/api/`
+let jsonIdx = 0;
 let threadContainer = document.getElementById('threadContainer')
 const submitBtn = document.getElementById('submitBtn');
 
@@ -7,9 +8,8 @@ document.addEventListener('DOMContentLoaded', fetchThread);
 
 submitBtn.addEventListener('click', async () => {
     await post()
-    threadContainer.innerHTML = ''
     await fetchThread()
-    setTimeout(() => document.getElementById('form_container').scrollIntoView({behavior: 'smooth'}), 2000)
+    document.getElementById('form_container').scrollIntoView({behavior: 'smooth'})
 })
 
 document.addEventListener('click', (event) => {
