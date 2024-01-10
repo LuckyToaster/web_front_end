@@ -1,5 +1,5 @@
 # USAGE
 
 ```bash 
-git clone
+git clone https://github.com/LuckyToaster/web_front_end.git
 ```
