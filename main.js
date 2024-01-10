@@ -1,14 +1,29 @@
-const submitBtn = document.getElementById('submitBtn');
-submitBtn.addEventListener('click', post);
-document.addEventListener('DOMContentLoaded', fetchThread);
-document.addEventListener('click', (event) => {
-    const btn = event.target
-    if (btn.classList.contains('likeBtn')) likePost(true, btn.closest('.post').id)
-    if (btn.classList.contains('dislikeBtn')) likePost(false, btn.closest('.post').id)
-})
-
 const ip = '49.13.153.69'
 let URL = `http://${ip}:3000/api/`
+let threadContainer = document.getElementById('threadContainer')
+const submitBtn = document.getElementById('submitBtn');
+
+document.addEventListener('DOMContentLoaded', fetchThread);
+
+submitBtn.addEventListener('click', async () => {
+    await post()
+    threadContainer.innerHTML = ''
+    await fetchThread()
+    setTimeout(() => document.getElementById('form_container').scrollIntoView({behavior: 'smooth'}), 2000)
+})
+
+document.addEventListener('click', (event) => {
+    const btn = event.target
+    if (btn.classList.contains('likeBtn')) {
+        likePost(true, btn.closest('.post').id)
+        fetchThread()
+    }
+    if (btn.classList.contains('dislikeBtn')) {
+        likePost(false, btn.closest('.post').id)
+        fetchThread()
+    }
+})
+
 
 function post() {
     const msgInput = document.getElementById('msgInput')
@@ -20,8 +35,10 @@ function post() {
         fd.append('file', fileInput.files[0])
 
     fetch(`${URL}insert`, {method: 'POST', body: fd})
-        .then(res => res.ok ? console.log('POST OK') : console.log('POST ERROR'))
-        .catch(e => console.error(e))
+        .then(res => {
+            res.ok ? console.log('POST OK') : console.log('POST ERROR')
+            msgInput.value = ""
+        }).catch(e => console.error(e))
 }
 
 
@@ -38,7 +55,8 @@ function fetchThread() {
             json.sort((a,b) => a.id - b.id)
             console.log(json)
             for (const post of json) createPost(post)
-        });
+        })
+        .catch(err => console.log(err))
 }
 
 
