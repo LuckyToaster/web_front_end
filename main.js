@@ -1,27 +1,22 @@
+let postIdx = 1 // its 1 less than lastPostId
 const ip = '49.13.153.69'
 let URL = `http://${ip}:3000/api/`
-let jsonIdx = 0;
 let threadContainer = document.getElementById('threadContainer')
 const submitBtn = document.getElementById('submitBtn');
 
 document.addEventListener('DOMContentLoaded', fetchThread);
 
 submitBtn.addEventListener('click', async () => {
-    await post()
-    await fetchThread()
+    post()
+    fetchThread()
+    await new Promise(requestAnimationFrame)
     document.getElementById('form_container').scrollIntoView({behavior: 'smooth'})
 })
 
 document.addEventListener('click', (event) => {
     const btn = event.target
-    if (btn.classList.contains('likeBtn')) {
-        likePost(true, btn.closest('.post').id)
-        fetchThread()
-    }
-    if (btn.classList.contains('dislikeBtn')) {
-        likePost(false, btn.closest('.post').id)
-        fetchThread()
-    }
+    if (btn.classList.contains('likeBtn')) likePost(true, btn.closest('.post').id)
+    if (btn.classList.contains('dislikeBtn')) likePost(false, btn.closest('.post').id)
 })
 
 
@@ -45,17 +40,28 @@ function post() {
 function likePost(like, id) {
     const url = like ? `${URL}like/${id}` : `${URL}dislike/${id}`
     fetch(url, { method: 'POST' })
+
+    let query = '.likesContainer'
+    if (like) query += ':first-child'
+    else query += ':nth-child(2)'
+
+    const post = document.getElementById(id)
+    const likesContainer = post.querySelector(query);
+    const count = likesContainer.querySelector('h3');
+    count.textContent = parseInt(count.textContent) + 1
 }
 
 
 function fetchThread() {
-    fetch(`${URL}thread`)
+    fetch(`${URL}slice/${postIdx}`)
         .then(res => res.json())
         .then(json => {
             json.sort((a,b) => a.id - b.id)
             console.log(json)
-            for (;jsonIdx < json.length; jsonIdx++) createPost(json[jsonIdx])
-            //for (const post of json) createPost(post)
+            for (const post of json) {
+                createPost(post)
+                postIdx++
+            }
         })
         .catch(err => console.log(err))
 }
