@@ -1,4 +1,4 @@
-let postIdx = 1 // its 1 less than lastPostId
+let postIdx = 1 
 const ip = '49.13.153.69'
 let URL = `http://${ip}:3000/api/`
 let threadContainer = document.getElementById('threadContainer')
@@ -7,8 +7,8 @@ const submitBtn = document.getElementById('submitBtn');
 document.addEventListener('DOMContentLoaded', fetchThread);
 
 submitBtn.addEventListener('click', async () => {
-    post()
-    fetchThread()
+    await post()
+    await fetchThread()
     await new Promise(requestAnimationFrame)
     document.getElementById('form_container').scrollIntoView({behavior: 'smooth'})
 })
@@ -20,7 +20,7 @@ document.addEventListener('click', (event) => {
 })
 
 
-function post() {
+async function post() {
     const msgInput = document.getElementById('msgInput')
     const fileInput = document.getElementById('fileInput')
 
@@ -29,11 +29,11 @@ function post() {
     if (fileInput.files[0] != null) 
         fd.append('file', fileInput.files[0])
 
-    fetch(`${URL}insert`, {method: 'POST', body: fd})
-        .then(res => {
-            res.ok ? console.log('POST OK') : console.log('POST ERROR')
-            msgInput.value = ""
-        }).catch(e => console.error(e))
+    const res = await fetch(`${URL}insert`, {method: 'POST', body: fd})
+    res.ok ? console.log('POST OK') : console.log('POST ERROR')
+
+    msgInput.value = ''
+    fileInput.value = ''
 }
 
 
@@ -52,18 +52,15 @@ function likePost(like, id) {
 }
 
 
-function fetchThread() {
-    fetch(`${URL}slice/${postIdx}`)
-        .then(res => res.json())
-        .then(json => {
-            json.sort((a,b) => a.id - b.id)
-            console.log(json)
-            for (const post of json) {
-                createPost(post)
-                postIdx++
-            }
-        })
-        .catch(err => console.log(err))
+async function fetchThread() {
+    const res = await fetch(`${URL}slice/${postIdx}`)
+    const json = await res.json()
+    json.sort((a,b) => a.id - b.id)
+    console.log(json)
+    for (const post of json) {
+        createPost(post)
+        postIdx++
+    }
 }
 
 
