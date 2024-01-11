@@ -54,7 +54,8 @@ function fetchThread() {
         .then(json => {
             json.sort((a,b) => a.id - b.id)
             console.log(json)
-            for (const post of json) createPost(post)
+            for (;jsonIdx < json.length; jsonIdx++) createPost(json[jsonIdx])
+            //for (const post of json) createPost(post)
         })
         .catch(err => console.log(err))
 }
