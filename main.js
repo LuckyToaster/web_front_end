@@ -1,6 +1,6 @@
 let postIdx = 1 
 const ip = '49.13.153.69'
-let URL = `http://${ip}:3000/api/`
+let URL = `https://${ip}:3000/api/`
 let threadContainer = document.getElementById('threadContainer')
 const submitBtn = document.getElementById('submitBtn');
 
